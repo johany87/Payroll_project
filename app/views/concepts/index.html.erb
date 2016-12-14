@@ -1,0 +1,16 @@
+<div class="container">
+  <table class="table table-responsive">
+    <tbody>
+      <% @concepts.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.type %></td>
+        <td><%= c.value %></td>
+        <td><a href="<%= concept_path(c.id)%>" class="btn btn-info"> View </a></td>
+        <td><a href="<%= edit_concept_path(c.id)%>" class="btn btn-success"> Edit </a></td>
+        <td><a href="<%= concept_path(c.id) %>" data-method="delete" class="btn btn-danger"> Delete </a></td>
+      </tr>
+      <% end if @employees.any?%>
+    </tbody>
+  </table>
+</div>

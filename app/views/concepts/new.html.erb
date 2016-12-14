@@ -1,0 +1,36 @@
+<h1>New Concept</h1>
+<% if @concept.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@concept.errors.count, "error") %> prohibited
+    this article from being saved:
+  </h2>
+  <ul>
+    <% @concept.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="container col-md-6">
+  <%= form_for @concept do |c| %>
+    <!--NAME-->
+    <div class="form-group">
+      <%= c.label :name %>
+      <%= c.text_field :name, class: "form-control" %>
+    </div>
+    <!--TYPE-->
+    <div class="form-group">
+      <%= c.label :type %>
+      <%= c.check_box :type, class: "form-control" %>
+    </div>
+    <!--NAME-->
+    <div class="form-group">
+      <%= c.label :value %>
+      <%= c.number_field :value, class: "form-control" %>
+    </div>
+    <!--BUTTONS-->
+    <%= c.submit "new concept", class:"btn btn-primary" %>
+  <% end %> <!--FORM_FOR-->
+</div>

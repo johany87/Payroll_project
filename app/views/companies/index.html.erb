@@ -1,0 +1,18 @@
+
+<div class="container">
+  <table class="table table-responsive">
+    <tbody>
+      <% @companies.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.nit %></td>
+        <td><%= c.address %></td>
+        <td><%= c.user.email %></td>
+        <td><a href="<%= company_path(c.id)%>" class="btn btn-info"> View </a></td>
+        <td><a href="<%= edit_company_path(c.id)%>" class="btn btn-success"> Edit </a></td>
+        <td><a href="<%= company_path(c.id) %>" data-method="delete" class="btn btn-danger"> Delete </a></td>
+      </tr>
+      <% end if @companies.any?%>
+    </tbody>
+  </table>
+</div>

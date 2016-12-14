@@ -1,0 +1,41 @@
+<h1>New Payroll</h1>
+<% if @payroll.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@payroll.errors.count, "error") %> prohibited
+    this article from being saved:
+  </h2>
+  <ul>
+    <% @payroll.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="container col-md-6">
+  <%= form_for @payroll do |p| %>
+    <!--MONTH-->
+    <div class="form-group">
+      <%= p.label :month %>
+      <%= p.number_field :month, class: "form-control" %>
+    </div>
+    <!--YEAR-->
+    <div class="form-group">
+      <%= p.label :year %>
+      <%= p.number_field :year, class: "form-control" %>
+    </div>
+    <!--SELECT EMPLOYEE-->
+    <div class="form-group">
+      <%= p.label :employee %><br>
+      <select name="payroll[employee_id]" class="selectpicker">
+        <%= @employees.each do |e|  %>
+        <option value="<%= e.id %>"> <%= e.first_name %> </option>
+        <% end  %>
+      </select>
+    </div>
+
+    <!--BUTTONS-->
+    <%= p.submit "new <payroll></payroll>", class:"btn btn-primary" %>
+  <% end %> <!--FORM_FOR-->
+</div>
