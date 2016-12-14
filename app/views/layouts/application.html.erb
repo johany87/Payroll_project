@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PayRoll Software</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="<%= root_path %>">PayRoll Software <%= current_user ? "| #{current_user.email}" : '' %></a>
+        <% if !current_user %>
+        <a class="btn btn-info btn-xs navbar-btn" href="<%= new_user_session_path %>">Log in</a>
+        <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_user_registration_path %>">Sign up</a>
+        <% else %>
+        <a class="btn btn-danger btn-xs navbar-btn" href="<%= destroy_user_session_path %>" data-method="delete">Log out</a>
+      </div>
+      <% end %>
+    </div><!-- /container-fluid -->
+  </nav>
+  <%= yield %>
+</body>
+</html>

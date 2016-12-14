@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: 1
+  year: 1
+  employee_id: 1
+  total_payroll: 9.99
+
+two:
+  month: 1
+  year: 1
+  employee_id: 1
+  total_payroll: 9.99
