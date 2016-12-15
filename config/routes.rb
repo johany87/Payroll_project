@@ -4,18 +4,24 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "static_pages#index"
-    resources :payrolls
-  resources :concepts
-
+  resources :payrolls
+  
     resources :companies do
       collection do
         post :import
       end
-    end
+    end #companies
 
     resources :employees do
       collection do
         post :import
       end
-    end
+    end #employees
+
+    resources :concepts do
+      collection do
+        post :import
+      end
+    end #concepts
+
 end

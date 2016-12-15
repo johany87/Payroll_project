@@ -1,5 +1,11 @@
 class ConceptsController < ApplicationController
 
+  def import
+    Concept.import(params[:file])
+    flash[:success] = "Concept Imported"
+    redirect_to comcepts_path
+  end #import
+
   def index
     @concepts = Concept.all
   end #index
