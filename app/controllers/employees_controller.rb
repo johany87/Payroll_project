@@ -1,7 +1,15 @@
 class EmployeesController < ApplicationController
 
+  def import
+    @company = Company.find(params[:company_id])
+    puts @company
+    Employee.import(params[:file], @company)
+    flash[:success] = "Employee Imported"
+    redirect_to employees_path
+  end
+
   def index
-    @employees = Employee.all
+    @employees = Employee.includes(:company).all
     @companies = Company.all
   end #index
 

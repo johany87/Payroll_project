@@ -9,7 +9,9 @@
         <td><%= e.email %></td>
         <td><%= e.address %></td>
         <td><%= e.phone %></td>
-        <td><%= e.company.name %></td>
+        <% if e.company != nil %>
+          <td><%= e.company.name %></td>
+        <% end %>
         <td><a href="<%= employee_path(e.id)%>" class="btn btn-info"> View </a></td>
         <td><a href="<%= edit_employee_path(e.id)%>" class="btn btn-success"> Edit </a></td>
         <td><a href="<%= employee_path(e.id) %>" data-method="delete" class="btn btn-danger"> Delete </a></td>

@@ -1,5 +1,11 @@
 class CompaniesController < ApplicationController
 
+  def import
+    Company.import(params[:file], current_user)
+    flash[:success] = "Companies Imported"
+    redirect_to companies_path
+  end
+
   def index
     @companies = Company.all
     @usuarios = User.all

@@ -1,2 +1,15 @@
-<h1>Companies#show</h1>
-<p>Find me in app/views/companies/show.html.erb</p>
+<div class="container">
+  <h1 class="text-center">Company Selected</h1>
+  <br>
+  <article class="row company">
+    <ul class="list-unstyled">
+      <li><%= @company.name %></li>
+      <li><%= @company.nit %></li>
+      <li><%= @company.address %></li>
+      <li><img src="<%= @company.avatar %>" alt="logo"></li>
+    </ul>
+    <a class="btn btn-info" href="<%= edit_company_path(@company.id)%>"> Edit</a>
+    <a class="btn btn-danger" href="<%= company_path(@company.id) %>" data-method="delete"> Delete </a>
+    <a class="btn btn-default" href="<%= companies_path %>" > View companies </a>
+  </article>
+</div>

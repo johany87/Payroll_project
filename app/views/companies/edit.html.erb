@@ -1,2 +1,21 @@
-<h1>Companies#edit</h1>
-<p>Find me in app/views/companies/edit.html.erb</p>
+<div class="container">
+  <h1 class="text-center">Company Selected</h1>
+  <br>
+  <article class="row company">
+    <ul class="list-unstyled">
+      <strong>Name</strong>
+      <li><%= text_field(:company,:name) %></li>
+      <strong>Nit</strong>
+      <li><%= number_field(:company,:nit) %></li>
+      <strong>Address</strong>
+      <li><%= text_field(:company,:address) %></li>
+    </ul>
+    <!--AVATAR-->
+    <%= form_for @company do |c| %>
+      <%= c.label :avatar %>
+      <%= c.file_field :avatar, class: "form-control" %>
+      <%= c.submit "Save", class:"btn btn-primary" %>
+    <% end %>
+    <a class="btn btn-default" href="<%= companies_path %>" > View companies </a>
+  </article>
+</div>

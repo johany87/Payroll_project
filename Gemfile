@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'roo'
+#Upload CSV file
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+#Upload avatar gem
 gem 'carrierwave_direct'
 # gem for icon image
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
