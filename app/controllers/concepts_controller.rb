@@ -36,7 +36,7 @@ class ConceptsController < ApplicationController
     find_concept
     if @concept.update(concept_params)
       flash[:success] = "Concept updated"
-      redirect_to cocepts_path
+      redirect_to concepts_path
     else
       flash[:error] = "Concept couldn't updated"
       render 'new'
