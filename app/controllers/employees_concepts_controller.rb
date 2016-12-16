@@ -1,53 +1,58 @@
 class EmployeesConceptsController < ApplicationController
+
   def index
-    @emplyee = Employee.all
+    @employees_concepts = EmployeesConcept.all
   end
 
   def new
-    @employee = Employee.new
+    @employee_concept = EmployeesConcept.new
+    @employees = Employee.all
+    @concepts = Concept.all
   end
 
   def create
-    @employee = Employee.new(employee_params)
-    if @employee.save
-      flash[:success] = "Employee created Ok"
-      redirect_to employee_path
+    @employee_concept = EmployeesConcept.new(employee_concept_params)
+    if @employee_concept.save
+      flash[:success] = "Employee concept created Ok"
+      redirect_to employees_concepts_path
     else
       render 'new'
     end #if
   end
 
   def destroy
-    find_employee
-    if @employee.destroy
+    find_employee_concept
+    if @employee_concept.destroy
         flash[:success] = "Employee Destroyed Successfully"
     else
         flash[:error] = "Employee couldn't delete"
     end #if
-      redirect_to employee_path
+      redirect_to employees_concepts_path
   end
 
   def edit
-    @employee = Employee.all
+    @employee_concept = EmployeesConcept.all
+    @concepts = Concept.all
   end
 
   def update
-    find_employee
-    if @employee.update(employee_params)
+    find_employee_concept
+    if @employee_concept.update(employee_params)
       flash[:success] = "Employee updated"
-      redirect_to employe_path
+      redirect_to employees_concepts_path
     else
       flash[:error] = "Concept couldn't updated"
       render 'new'
     end #if
   end
 
-  def show
+  def find_employee_concept
+    @emplyee_concept = EmployeesConcept.find_by(id: params[:id])
   end
 
-  def find_employees_concepts
-  end
+  private
 
   def employee_concept_params
+    params.require(:employee_concept).permit(:employee_id, :concept_id)
   end
 end

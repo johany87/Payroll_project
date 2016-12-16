@@ -3,7 +3,7 @@ class ConceptsController < ApplicationController
   def import
     Concept.import(params[:file])
     flash[:success] = "Concept Imported"
-    redirect_to comcepts_path
+    redirect_to concepts_path
   end #import
 
   def index
@@ -35,7 +35,7 @@ class ConceptsController < ApplicationController
   end #destroy
 
   def edit
-    @concepts = Concept.all
+    @concept = Concept.all
   end #edit
 
   def update
@@ -60,7 +60,7 @@ class ConceptsController < ApplicationController
   private
 
   def concept_params
-    params.require(:concept).permit(:name, :type, :value)
+    params.require(:concept).permit(:name, :concept_type, :value)
   end #concept_params
 
 end

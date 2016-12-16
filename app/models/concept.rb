@@ -21,4 +21,12 @@ class Concept < ApplicationRecord
     end
   end #self.open_spreadsheet
 
+  def get_concept_type
+    if concept_type
+      "Devengado"
+    else
+      "Deducido"
+    end #if
+  end #concep
+
 end

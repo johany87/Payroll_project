@@ -13,13 +13,14 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="<%= root_path %>">PayRoll Software <%= current_user ? "| #{current_user.email}" : '' %></a>
         <% if !current_user %>
-        <a class="btn btn-info btn-xs navbar-btn" href="<%= new_user_session_path %>">Log in</a>
-        <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_user_registration_path %>">Sign up</a>
+          <a class="btn btn-info btn-xs navbar-btn" href="<%= new_user_session_path %>">Log in</a>
+          <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_user_registration_path %>">Sign up</a>
         <% else %>
-        <a class="btn btn-danger btn-xs navbar-btn" href="<%= destroy_user_session_path %>" data-method="delete">Log out</a>
-        <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_company_path %>">New company</a>
-        <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_employee_path %>">New employee</a>
-        <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_concept_path %>">New concept</a>
+          <a class="btn btn-danger btn-xs navbar-btn" href="<%= destroy_user_session_path %>" data-method="delete">Log out</a>
+          <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_company_path %>">New company</a>
+          <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_employee_path %>">New employee</a>
+          <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_concept_path %>">New concept</a>
+          <a class="btn btn-primary btn-xs navbar-btn" href="<%= new_employees_concept_path %>">Assign Concept</a>
       </div> <!--NAVBAR-HEADER -->
       <% end %>
     </div> <!--CONTAINER-FLUID -->

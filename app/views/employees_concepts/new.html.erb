@@ -1,2 +1,24 @@
-<h1>EmployeesConcepts#new</h1>
-<p>Find me in app/views/employees_concepts/new.html.erb</p>
+<div class="container ">
+  <h1>Assign Concept to employee</h1>
+  <%= form_for @employee_concept do |ec| %>
+    <!--Select Employee-->
+    <div class="col-sm-3 form-group">
+      <%= ec.label :employees%>
+      <select name="employee_concept[employee_id]" class="selectpicker">
+        <%= @employees.each do |e|  %>
+          <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
+        <% end  %>
+      </select>
+    </div>
+    <!--Select Concept-->
+    <div class="col-sm-3 form-group">
+      <%= ec.label :concepts %>
+      <select name="employee_concept[concept_id]" class="selectpicker">
+        <%= @concepts.each do |c|  %>
+          <option value="<%= c.id %>"> <%= c.name%> </option>
+        <% end  %>
+      </select>
+    </div>
+    <%= ec.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+</div>

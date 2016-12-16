@@ -1,2 +1,13 @@
-<h1>EmployeesConcepts#index</h1>
-<p>Find me in app/views/employees_concepts/index.html.erb</p>
+<div class="container">
+  <table class="table table-responsive">
+    <tbody>
+      <% @employees_concepts.each do |ec| %>
+      <tr>
+        <td><%= ec.employee.first_name %></td>
+        <td><%= ec.concept.name %></td>
+        <td><%= ec.concept.value %></td>
+      </tr>
+      <% end if @employees_concepts.any?%>
+    </tbody>
+  </table>
+</div>

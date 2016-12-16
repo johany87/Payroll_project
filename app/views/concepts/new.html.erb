@@ -1,4 +1,3 @@
-<h1>New Concept</h1>
 <% if @concept.errors.any? %>
 <div id="error_explanation">
   <h2>
@@ -13,7 +12,8 @@
 </div>
 <% end %>
 
-<div class="container col-md-6">
+<div class="container col-md-4 col-md-offset-1">
+  <h1>New Concept</h1>
   <%= form_for @concept do |c| %>
     <!--NAME-->
     <div class="form-group">
@@ -22,10 +22,13 @@
     </div>
     <!--TYPE-->
     <div class="form-group">
-      <%= c.label :type %>
-      <%= c.check_box :type, class: "form-control" %>
+      <%= c.label :type %><br>
+      <select name="concept[concept_type]" class="selectpicker">
+        <option value="true">Devengado</option>
+        <option value="false">Deducido</option>
+      </select>
     </div>
-    <!--NAME-->
+    <!--VALUE-->
     <div class="form-group">
       <%= c.label :value %>
       <%= c.number_field :value, class: "form-control" %>
@@ -33,4 +36,16 @@
     <!--BUTTONS-->
     <%= c.submit "new concept", class:"btn btn-primary" %>
   <% end %> <!--FORM_FOR-->
+</div>
+<!--IMPORT SEVERAL COMPANIES CSV-->
+<div class="container col-md-3">
+  <h3>Import concepts</h3>
+  <br>
+  <div class="form-group">
+    <%= form_tag import_concepts_path, multipart: true do %>
+      <%= file_field_tag :file, class: "form-control" %>
+      <br>
+      <%= submit_tag "Import file", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

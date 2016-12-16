@@ -55,6 +55,7 @@ class CompaniesController < ApplicationController
   def show
     find_company
     @users = User.all
+    @concepts = Concept.all
   end
 
   def find_company
