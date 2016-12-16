@@ -50,6 +50,12 @@ class EmployeesConceptsController < ApplicationController
     @emplyee_concept = EmployeesConcept.find_by(id: params[:id])
   end
 
+  def import
+    EmployeesConcept.import(params[:file])
+    flash[:success] = "Concept Imported"
+    redirect_to employees_concepts_path
+  end
+
   private
 
   def employee_concept_params

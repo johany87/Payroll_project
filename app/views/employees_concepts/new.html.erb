@@ -22,3 +22,15 @@
     <%= ec.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>
+<!--IMPORT SEVERAL COMPANIES CSV-->
+<div class="container col-md-3">
+  <h3>Import Employee Conceptss</h3>
+  <br>
+  <div class="form-group">
+    <%= form_tag import_employees_concepts_path, multipart: true do %>
+      <%= file_field_tag :file, class: "form-control" %>
+      <br>
+      <%= submit_tag "Import file", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

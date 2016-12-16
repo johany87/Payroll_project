@@ -62,9 +62,9 @@
 <!--IMPORT EMPLOYEES-->
 <div class="container col-md-3">
   <h1>Import employees</h1> <br>
+  <%= form_tag import_employees_path, multipart: true do %>
   <div class="form-group">
     <%= file_field_tag :file, class: "form-control" %>
-    <%= form_tag import_employees_path, multipart: true do %>
   </div>
   <!--Select Company-->
   <div class="form-group">

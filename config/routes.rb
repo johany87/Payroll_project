@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   root to: "static_pages#index"
   resources :payrolls
-  resources :employees_concepts
+  resources :employees_concepts do
+    collection do
+      post :import
+    end
+  end
 
     resources :companies do
       collection do
