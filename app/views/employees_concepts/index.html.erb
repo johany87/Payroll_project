@@ -3,9 +3,15 @@
     <tbody>
       <% @employees_concepts.each do |ec| %>
       <tr>
-        <td><%= ec.employee.first_name %></td>
-        <td><%= ec.concept.name %></td>
-        <td><%= ec.value %></td>
+        <td>
+          <%= ec.employee.first_name %>
+        </td>
+        <td>
+          <%= ec.concept.name %>
+        </td>
+        <td>
+          <%= ec.value %>
+        </td>
       </tr>
       <% end if @employees_concepts.any?%>
     </tbody>

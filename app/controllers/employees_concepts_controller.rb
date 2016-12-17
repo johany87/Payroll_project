@@ -59,6 +59,6 @@ class EmployeesConceptsController < ApplicationController
   private
 
   def employee_concept_params
-    params.require(:employee_concept).permit(:employee_id, :concept_id)
+    params.require(:employee_concept).permit(:employee_id, :concept_id, :value)
   end
 end

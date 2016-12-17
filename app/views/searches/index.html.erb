@@ -1,0 +1,36 @@
+<div class="container col-md-12">
+  <div class="row col-md-6 col-md-offset-1">
+    <!--FILTER BY EMPLOYEE-->
+    <h4>Search payroll by employee</h4>
+    <div class="row">
+      <%= form_tag searches_path, method: :get do %>
+      <select name="employee_id" class="selectpicker">
+        <%= @employees.each do |e| %>
+        <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
+        <% end  %>
+      </select>
+      <button type="submit" class="btn">Search</button>
+      <% end %>
+    </div>
+    <br>
+  </div>
+  <!--SHOW PAYROLL BY EMPLOYEE-->
+  <div class="container col-md-5 col-md-offset-1">
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Concept</th>
+        <th>Value</th>
+      </tr>
+    </table>
+    <% @payroll.each do |p| %>
+    <table class="table table-striped">
+      <tr>
+        <td><%= p.employee.first_name %></td>
+        <td class="text-left"><%= p.concept.name %></td>
+        <td><%= p.value %></td>
+      </tr>
+    </table>
+    <% end if @payroll.any? %>
+  </div>
+</div>

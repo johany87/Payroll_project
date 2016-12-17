@@ -1,36 +1,43 @@
-<div class="container ">
-  <h1>Assign Concept to employee</h1>
+<div class="container col-md-10 col-md-offset-1">
+  <h1>Assign Concept to employee</h1> <br>
   <%= form_for @employee_concept do |ec| %>
-    <!--Select Employee-->
-    <div class="col-sm-3 form-group">
-      <%= ec.label :employees%>
-      <select name="employee_concept[employee_id]" class="selectpicker">
-        <%= @employees.each do |e|  %>
-          <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
-        <% end  %>
-      </select>
-    </div>
-    <!--Select Concept-->
-    <div class="col-sm-3 form-group">
-      <%= ec.label :concepts %>
-      <select name="employee_concept[concept_id]" class="selectpicker">
-        <%= @concepts.each do |c|  %>
-          <option value="<%= c.id %>"> <%= c.name%> </option>
-        <% end  %>
-      </select>
-    </div>
-    <%= ec.submit "Save", class: "btn btn-primary" %>
+  <!--Select Employee-->
+  <div class="col-md-3 form-group">
+    <%= ec.label :employees%>
+    <select name="employee_concept[employee_id]" class="selectpicker">
+      <%= @employees.each do |e|  %>
+      <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
+      <% end  %>
+    </select>
+  </div>
+  <!--Select Concept-->
+  <div class="col-md-3 form-group">
+    <%= ec.label :concepts %>
+    <select name="employee_concept[concept_id]" class="selectpicker">
+      <%= @concepts.each do |c|  %>
+      <option value="<%= c.id %>"> <%= c.name%> </option>
+      <% end  %>
+    </select>
+  </div>
+  <!--Concept Value-->
+  <div class="col-md-2 form-group">
+    <%= ec.label :value %>
+    <%= ec.number_field :value, class: "form-control" %>
+  </div>
+  <%= ec.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>
 <!--IMPORT SEVERAL COMPANIES CSV-->
-<div class="container col-md-3">
-  <h3>Import Employee Conceptss</h3>
-  <br>
-  <div class="form-group">
-    <%= form_tag import_employees_concepts_path, multipart: true do %>
+<div class="container col-md-8 col-md-offset-1">
+  <div class="container col-md-4">
+    <h3>Import Employee Concepts</h3>
+    <br>
+    <div class="form-group">
+      <%= form_tag import_employees_concepts_path, multipart: true do %>
       <%= file_field_tag :file, class: "form-control" %>
       <br>
       <%= submit_tag "Import file", class: "btn btn-primary" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -29,4 +29,4 @@ class Concept < ApplicationRecord
     end #if
   end #concep
 
-end
+end #Concept

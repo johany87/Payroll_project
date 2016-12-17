@@ -7,8 +7,7 @@ class EmployeesConcept < ApplicationRecord
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      ec = EmployeesConcept.new 
-      #fixed_row = row.to_hash
+      ec = EmployeesConcept.new
       row_employee = Employee.find_by(id_card: row.to_hash["id_card"])
       row_concept = Concept.find_by(name: row.to_hash["concept"])
       ec.employee = row_employee
