@@ -5,15 +5,25 @@ class EmployeesConceptsController < ApplicationController
   end
 
   def new
-    @employee_concept = EmployeesConcept.new
-    @employees = Employee.all
-    @concepts = Concept.all
+    @employees_concept = EmployeesConcept.new
+    @companies = current_user.companies
+  end
+
+  def load_company_info
+    @company_id = params[:company_id]
+    load_employees
+    load_concepts
   end
 
   def create
-    @employee_concept = EmployeesConcept.new(employee_concept_params)
-    if @employee_concept.save
-      flash[:success] = "Employee concept created Ok"
+    @employees_concept = EmployeesConcept.new
+    @employee = Employee.find_by(params[:employee_id])
+    @concept = Concept.find_by(params[:concept_id])
+    @employees_concept.employee = @employee
+    @employees_concept.concept = @concept
+    @employees_concept.value = params[:value]
+    @employees_concept.payroll_date = Date.strptime(params[:payroll_date],"%m/%d/%Y")
+    if @employees_concept.save
       redirect_to employees_concepts_path
     else
       render 'new'
@@ -21,23 +31,22 @@ class EmployeesConceptsController < ApplicationController
   end
 
   def destroy
-    find_employee_concept
-    if @employee_concept.destroy
+    find_employees_concept
+    if @employees_concept.destroy
         flash[:success] = "Employee Destroyed Successfully"
     else
         flash[:error] = "Employee couldn't delete"
     end #if
-      redirect_to employees_concepts_path
   end
 
   def edit
-    @employee_concept = EmployeesConcept.all
+    @employees_concept = EmployeesConcept.all
     @concepts = Concept.all
   end
 
   def update
-    find_employee_concept
-    if @employee_concept.update(employee_params)
+    find_employees_concept
+    if @employees_concept.update(employees_concept_params)
       flash[:success] = "Employee updated"
       redirect_to employees_concepts_path
     else
@@ -46,19 +55,27 @@ class EmployeesConceptsController < ApplicationController
     end #if
   end
 
-  def find_employee_concept
-    @emplyee_concept = EmployeesConcept.find_by(id: params[:id])
+  def find_employees_concept
+    @employees_concept = EmployeesConcept.find_by(id: params[:id])
   end
 
   def import
-    EmployeesConcept.import(params[:file])
+    EmployeesConcept.import(params[:file], current_user.companies.find(params[:import_company_id]))
     flash[:success] = "Concept Imported"
     redirect_to employees_concepts_path
   end
 
   private
 
-  def employee_concept_params
-    params.require(:employee_concept).permit(:employee_id, :concept_id, :value)
+  def employees_concept_params
+    params.require(:employees_concept).permit(:employee_id, :concept_id, :value, :payroll_date)
+  end
+
+  def load_employees
+    @employees = Employee.where(company_id: current_user.companies.find(params[:company_id]))
+  end
+
+  def load_concepts
+    @concepts = Concept.where(company_id: current_user.companies.find(params[:company_id]))
   end
 end

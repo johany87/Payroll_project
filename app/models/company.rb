@@ -1,5 +1,6 @@
   class Company < ApplicationRecord
   has_many :employees, class_name: "Employee"
+    has_many :concepts, class_name: "Concept"
   belongs_to :user, class_name: "User", foreign_key: "user_id"
   mount_uploader :avatar, AvatarUploader
 

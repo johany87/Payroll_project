@@ -1,19 +1,22 @@
 <div class="container col-md-12">
-  <div class="row col-md-6 col-md-offset-1">
+  <div class="row col-md-offset-1">
     <!--FILTER BY EMPLOYEE-->
     <h4>Search payroll by employee</h4>
-    <div class="row">
+    <div class="row col-md-7">
       <%= form_tag searches_path, method: :get do %>
-      <select name="employee_id" class="selectpicker">
-        <%= @employees.each do |e| %>
-        <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
-        <% end  %>
-      </select>
-      <button type="submit" class="btn">Search</button>
+        <select name="employee_id" class="selectpicker">
+          <%= @employees.each do |e| %>
+            <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
+          <% end  %>
+        </select>
+        <%= submit_tag "Search!", class: "btn btn-primary" %>
       <% end %>
     </div>
     <br>
   </div>
+  <!--SELECT BY MONTH OF THE PAYROLL-->
+  <br>
+</div>
   <!--SHOW PAYROLL BY EMPLOYEE-->
   <div class="container col-md-5 col-md-offset-1">
     <table class="table">
@@ -21,16 +24,19 @@
         <th>Name</th>
         <th>Concept</th>
         <th>Value</th>
+        <th>Total</th>
       </tr>
     </table>
-    <% @payroll.each do |p| %>
     <table class="table table-striped">
+      <% @payroll.each do |p| %>
       <tr>
         <td><%= p.employee.first_name %></td>
-        <td class="text-left"><%= p.concept.name %></td>
+        <td><%= p.concept.name %></td>
         <td><%= p.value %></td>
+        <% sum = p.value %>
+        <% sum += sum %>
       </tr>
+      <% end if @payroll.any? %>
     </table>
-    <% end if @payroll.any? %>
   </div>
 </div>

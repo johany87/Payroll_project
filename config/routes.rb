@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :employees_concepts do
     collection do
       post :import
+      get :load_company_info
     end
   end
 

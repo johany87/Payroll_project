@@ -1,41 +1,59 @@
 <div class="container col-md-10 col-md-offset-1">
   <h1>Assign Concept to employee</h1> <br>
-  <%= form_for @employee_concept do |ec| %>
-  <!--Select Employee-->
-  <div class="col-md-3 form-group">
-    <%= ec.label :employees%>
-    <select name="employee_concept[employee_id]" class="selectpicker">
-      <%= @employees.each do |e|  %>
-      <option value="<%= e.id %>"> <%= "#{e.first_name}" "#{" "}" "#{e.last_name}" %> </option>
-      <% end  %>
+  <%= form_tag load_company_info_employees_concepts_path, remote: true ,method: :get do %>
+    <select name="company_id">
+      <% @companies.each do |c| %>
+        <option value="<%= c.id %>"><%= c.name %></option>
+      <% end %>
     </select>
-  </div>
-  <!--Select Concept-->
-  <div class="col-md-3 form-group">
-    <%= ec.label :concepts %>
-    <select name="employee_concept[concept_id]" class="selectpicker">
-      <%= @concepts.each do |c|  %>
-      <option value="<%= c.id %>"> <%= c.name%> </option>
-      <% end  %>
-    </select>
-  </div>
-  <!--Concept Value-->
-  <div class="col-md-2 form-group">
-    <%= ec.label :value %>
-    <%= ec.number_field :value, class: "form-control" %>
-  </div>
-  <%= ec.submit "Save", class: "btn btn-primary" %>
+    <button type="submit" style="display:none;" id="load_companies_info_button"></button>
+  <% end %>
+
+  <%= form_for @employees_concept , html: {style: "margin-top:50px;display:none", id: "employees-concept-form"} do |ec| %>
+    <!--Select Employee-->
+    <div class="col-md-3 form-group">
+      <%= ec.label :employees%>
+      <select name="employee_id">
+      </select>
+    </div>
+    <!--Select Concept-->
+    <div class="col-md-3 form-group">
+      <%= ec.label :concepts %>
+      <select name="concept_id">
+      </select>
+    </div>
+    <!--Concept Value-->
+    <div class="col-md-2 form-group">
+      <%= ec.label :value %>
+      <%= ec.number_field :value, class: "form-control", name: "value" %>
+    </div>
+    <!--Payroll_Date-->
+    <div class="col-md-2 form-group">
+      <%= ec.label :payroll_date %>
+      <input type="text" name="payroll_date" class="form-control">
+    </div>
+    <script type="text/javascript">
+      $('input[name="payroll_date"]').datepicker({
+    });
+    </script>
+    <!--BUTTON SUBMIT-->
+    <div class="form_group col-md-1">
+      <%= ec.submit "Save", class: "btn btn-primary" %>
+    </div>
   <% end %>
 </div>
+<br>
 <!--IMPORT SEVERAL COMPANIES CSV-->
-<div class="container col-md-8 col-md-offset-1">
-  <div class="container col-md-4">
-    <h3>Import Employee Concepts</h3>
+<div class="container col-md-8 col-md-offset-1" id="import-ec-section"style="display:none;">
+  <div class="container col-md-6">
+    <h1>Import Employee Concepts</h1>
+    <br>
     <br>
     <div class="form-group">
       <%= form_tag import_employees_concepts_path, multipart: true do %>
       <%= file_field_tag :file, class: "form-control" %>
       <br>
+      <input type="hidden" name="import_company_id">
       <%= submit_tag "Import file", class: "btn btn-primary" %>
       <% end %>
     </div>

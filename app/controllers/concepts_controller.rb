@@ -1,7 +1,7 @@
 class ConceptsController < ApplicationController
 
   def import
-    Concept.import(params[:file])
+    Concept.import(params[:file], current_user.companies.find(params[:company_id]))
     flash[:success] = "Concept Imported"
     redirect_to concepts_path
   end #import
@@ -12,6 +12,7 @@ class ConceptsController < ApplicationController
 
   def new
     @concept = Concept.new
+    @companies = current_user.companies
   end #new
 
   def create
@@ -60,7 +61,7 @@ class ConceptsController < ApplicationController
   private
 
   def concept_params
-    params.require(:concept).permit(:name, :concept_type, :value)
+    params.require(:concept).permit(:name, :concept_type, :value, :company_id)
   end #concept_params
 
 end

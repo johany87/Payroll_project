@@ -1,0 +1,10 @@
+<% if @employees.any? and @concepts.any? %>
+$("[name='import_company_id']").attr("value", <%= @company_id %> );
+$("[name='employee_id']").html("<%= j render "employees_options", employees: @employees %>");
+$("[name='concept_id']").html("<%= j render "concepts_options", concepts: @concepts %>");
+$("#employees-concept-form").show();
+$("#import-ec-section").show();
+<% else %>
+$("#employees-concept-form").hide();
+$("#import-ec-section").hide();
+<% end %>

@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
   def index
     @employees = Employee.all
     @concepts = Concept.all
+    @employees_concepts = EmployeesConcept.all
     search_payroll
   end
 

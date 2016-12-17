@@ -34,15 +34,6 @@
       <%= c.label :address%>
       <%= c.text_field :address, class: "form-control" %>
     </div>
-    <!--SELECT USER-->
-    <div class="form-group">
-      <%= c.label :user %><br>
-      <select name="company[user_id]" class="selectpicker">
-        <%= @usuarios.each do |u|  %>
-        <option value="<%= u.id %>"> <%= u.email %> </option>
-        <% end  %>
-      </select>
-    </div>
     <!--LOGO COMPANY-->
     <div class="form-group">
       <%= c.label :avatar %>

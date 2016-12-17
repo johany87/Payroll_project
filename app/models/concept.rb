@@ -1,12 +1,14 @@
 class Concept < ApplicationRecord
   has_many :employees_concepts, class_name: "EmployeesConcept"
+  belongs_to :company, class_name: "Company", foreign_key: "company_id"
 
-  def self.import(file)
+  def self.import(file, company)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       concept = find_by_id(row["id"]) || new
+      concept.company = company
       concept.attributes = row.to_hash
       concept.save!
     end

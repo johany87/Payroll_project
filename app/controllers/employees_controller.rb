@@ -9,13 +9,12 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @employees = Employee.includes(:company).all
-    @companies = Company.all
+    @employees = Employee.includes(:company).where(company_id: current_user.companies.select(:id))
   end #index
 
   def new
     @employee = Employee.new
-    @companies = Company.all
+    @companies = current_user.companies
   end #new
 
   def create

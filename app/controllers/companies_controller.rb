@@ -7,17 +7,16 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
-    @usuarios = User.all
+    @companies = current_user.companies.includes(:user)
   end #index
 
   def new
     @company = Company.new
-    @usuarios = User.all
   end # new
 
   def create
     @company = Company.new(company_params)
+    @company.user_id = current_user.id
     if @company.save
       flash[:success] = "Company created Ok"
       redirect_to companies_path
@@ -38,7 +37,6 @@ class CompaniesController < ApplicationController
 
   def edit
     find_company
-    @users = User.all
   end
 
   def update
@@ -65,7 +63,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :nit, :address, :avatar, :user_id)
+    params.require(:company).permit(:name, :nit, :address, :avatar)
   end # company_params
 
 end
