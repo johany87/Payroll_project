@@ -2,6 +2,7 @@
   <h1>Assign Concept to employee</h1> <br>
   <%= form_tag load_company_info_employees_concepts_path, remote: true ,method: :get do %>
     <select name="company_id">
+      <option></option>
       <% @companies.each do |c| %>
         <option value="<%= c.id %>"><%= c.name %></option>
       <% end %>

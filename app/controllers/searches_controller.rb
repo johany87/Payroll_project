@@ -9,6 +9,16 @@ class SearchesController < ApplicationController
 
   def search_payroll
     @payroll = EmployeesConcept.where("employee_id = ?", params[:employee_id])
-    
-  end
+    @total_payroll = 0
+    @payroll.each do |pr|
+      if pr.concept
+        @total_payroll += pr.value
+      else
+        @total_payroll -= pr.value
+      end
+    end
+  end #search_payroll
+
+
+
 end

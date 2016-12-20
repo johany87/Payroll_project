@@ -24,7 +24,6 @@
         <th>Name</th>
         <th>Concept</th>
         <th>Value</th>
-        <th>Total</th>
       </tr>
     </table>
     <table class="table table-striped">
@@ -35,7 +34,9 @@
           <td><%= p.value %></td>
         </tr>
       <% end if @payroll.any? %>
-      <td><%= @total %></td>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td><strong><%= @total_payroll %></strong></td>
     </table>
   </div>
 </div>

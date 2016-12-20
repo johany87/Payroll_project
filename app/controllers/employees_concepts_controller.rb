@@ -7,6 +7,7 @@ class EmployeesConceptsController < ApplicationController
   def new
     @employees_concept = EmployeesConcept.new
     @companies = current_user.companies
+    @concepts = Concept.all
   end
 
   def load_company_info
@@ -17,8 +18,8 @@ class EmployeesConceptsController < ApplicationController
 
   def create
     @employees_concept = EmployeesConcept.new
-    @employee = Employee.find_by(params[:employee_id])
-    @concept = Concept.find_by(params[:concept_id])
+    @employee = Employee.find(params[:employee_id])
+    @concept = Concept.find(params[:concept_id])
     @employees_concept.employee = @employee
     @employees_concept.concept = @concept
     @employees_concept.value = params[:value]
