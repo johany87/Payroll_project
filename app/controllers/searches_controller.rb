@@ -9,5 +9,6 @@ class SearchesController < ApplicationController
 
   def search_payroll
     @payroll = EmployeesConcept.where("employee_id = ?", params[:employee_id])
+    
   end
 end

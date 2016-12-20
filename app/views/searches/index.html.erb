@@ -29,14 +29,13 @@
     </table>
     <table class="table table-striped">
       <% @payroll.each do |p| %>
-      <tr>
-        <td><%= p.employee.first_name %></td>
-        <td><%= p.concept.name %></td>
-        <td><%= p.value %></td>
-        <% sum = p.value %>
-        <% sum += sum %>
-      </tr>
+        <tr>
+          <td><%= p.employee.first_name %></td>
+          <td><%= p.concept.name %></td>
+          <td><%= p.value %></td>
+        </tr>
       <% end if @payroll.any? %>
+      <td><%= @total %></td>
     </table>
   </div>
 </div>
